@@ -23,18 +23,24 @@ const publications = [
     desc: "A study examining how recent external shocks have affected food systems and policy responses across North Africa and the Middle East.",
     authors: "Moawad, D. & Taddei, I. M. (2025)",
     journal: "IEMed Mediterranean Yearbook 2025, IEMed",
+    doi: "https://www.iemed.org/publication/navigating-recent-crises-in-the-mena-region/",
+    pdf: "/papers/Crises_MENA_Region_Taddei_Moawad_IEMedYearbook2025.pdf",
   },
   {
     title: "STAPLES and Food Security Challenges in MENA",
     desc: "An analysis of the STAPLES project and its role in strengthening food system resilience and addressing food security challenges in the MENA region, with a focus on Egypt and Morocco.",
     authors: "Moawad, D. (2025)",
     journal: "Information and Decision Support Center (IDSC), January 2025",
+    doi: "https://www.idsc.gov.eg/Article/details/10829",
+    pdf: "/papers/STAPLES_Food_Security_MENA_Moawad_2025.pdf",
   },
   {
     title: "Does Environmental Change Affect Migration, Especially into the EU?",
     desc: "A literature-based analysis exploring how environmental and climate-induced changes influence migration patterns, particularly within the EU policy framework.",
     authors: "Moawad, D. (2024)",
     journal: "Social Sciences, 13(3), 160",
+    doi: "https://www.mdpi.com/2076-0760/13/3/160",
+    pdf: "/papers/Environmental_Change_Migration_EU_Moawad_2024.pdf",
   },
 ];
 
@@ -65,12 +71,12 @@ function PublicationsPage() {
                 <div className="flex items-center justify-between">
                   <p className="text-xs text-muted-foreground">{pub.journal}</p>
                   <div className="flex gap-2">
-                    <button className="flex items-center gap-1 text-xs border border-border px-3 py-1.5 rounded-md hover:bg-accent transition-colors">
+                    <a href={pub.doi} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-xs border border-border px-3 py-1.5 rounded-md hover:bg-accent transition-colors">
                       <ExternalLink size={12} /> DOI
-                    </button>
-                    <button className="flex items-center gap-1 text-xs bg-lime text-lime-foreground px-3 py-1.5 rounded-md hover:opacity-90 transition-opacity">
+                    </a>
+                    <a href={pub.pdf} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-xs bg-lime text-lime-foreground px-3 py-1.5 rounded-md hover:opacity-90 transition-opacity">
                       <Download size={12} /> View PDF
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -79,7 +85,7 @@ function PublicationsPage() {
         </div>
       </section>
 
-      <ContactSection />
+      <ContactSection variant="light" />
       <Footer />
     </div>
   );

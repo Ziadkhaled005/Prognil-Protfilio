@@ -61,7 +61,7 @@ function AboutPage() {
         </ul>
       </section>
 
-      <ContactSection />
+      <ContactSection variant="light" />
       <Footer />
     </div>
   );

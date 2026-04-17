@@ -1,6 +1,7 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import menuBg from "@/assets/menu-bg.jpg";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -36,13 +37,14 @@ export default function Header() {
 
       {/* Full-screen menu overlay */}
       {menuOpen && (
-        <div className="fixed inset-0 z-[100] flex flex-col justify-between bg-surface/95 backdrop-blur-xl text-surface-foreground p-8 md:p-16">
-          <div className="flex justify-end">
+        <div className="fixed inset-0 z-[100] flex flex-col justify-between text-surface-foreground p-8 md:p-16" style={{ backgroundImage: `url(${menuBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+          <div className="absolute inset-0 bg-surface/85 backdrop-blur-xl opacity-30 shadow-none rounded-none" />
+          <div className="relative z-10 flex justify-end">
             <button onClick={() => setMenuOpen(false)} aria-label="Close menu">
               <X size={28} className="text-surface-foreground" />
             </button>
           </div>
-          <nav className="flex flex-col gap-2">
+          <nav className="relative z-10 flex flex-col gap-2">
             {navLinks.filter(l => l.to !== "/").map((link) => (
               <Link
                 key={link.to}
@@ -54,7 +56,7 @@ export default function Header() {
               </Link>
             ))}
           </nav>
-          <div className="flex items-center justify-between text-sm text-surface-foreground/60">
+          <div className="relative z-10 flex items-center justify-between text-sm text-surface-foreground/60">
             <span>d.moawad@unisg.it</span>
             <div className="flex gap-6">
               <a href="#" className="hover:text-surface-foreground">Instagram</a>

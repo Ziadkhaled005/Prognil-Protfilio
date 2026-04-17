@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
 import PageHero from "@/components/PageHero";
+import heroSculpt from "@/assets/hero-waves-dark-sculpt.jpg";
 import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/research")({
@@ -60,38 +61,42 @@ function ResearchPage() {
     <div className="min-h-screen bg-background">
       <Header />
       <PageHero
+        variant="dark"
+        image={heroSculpt}
         title="RESEARCH & PROJECTS"
         subtitle="Advancing Knowledge Through Rigorous Inquiry In Economics And Political Studies."
       />
 
-      <section className="py-20 px-6 md:px-10 max-w-6xl mx-auto">
-        <p className="text-sm text-muted-foreground mb-2">Research projects</p>
-        <p className="text-xl md:text-2xl font-light leading-relaxed mb-12 max-w-3xl">
-          Advancing knowledge through rigorous inquiry in economics and political studies.
-        </p>
+      <section className="section-dark py-20 px-6 md:px-10">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-sm text-surface-foreground/70 mb-4">Research projects</p>
+          <p className="text-2xl md:text-3xl font-light leading-relaxed mb-16 max-w-3xl text-surface-foreground">
+            Advancing knowledge through rigorous inquiry in economics and political studies.
+          </p>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, i) => (
-            <div key={i} className="border border-border rounded-lg p-6 flex flex-col justify-between hover:border-foreground/30 transition-colors">
-              <div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="text-xs border border-border px-3 py-1 rounded-full">{tag}</span>
-                  ))}
+          <div className="grid md:grid-cols-2 gap-6">
+            {projects.map((project, i) => (
+              <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-7 flex flex-col justify-between hover:bg-white/10 transition-colors">
+                <div>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="text-xs bg-white/5 border border-white/10 text-surface-foreground/80 px-3 py-1 rounded-full">{tag}</span>
+                    ))}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 text-surface-foreground">{project.title}</h3>
+                  <p className="text-sm text-surface-foreground/60 leading-relaxed mb-10">{project.desc}</p>
                 </div>
-                <h3 className="font-semibold mb-3">{project.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-6">{project.desc}</p>
+                <div className="flex items-center justify-between text-xs text-surface-foreground/70">
+                  <span>{project.role} . {project.year}</span>
+                  <ArrowRight size={16} />
+                </div>
               </div>
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <span>{project.role} . {project.year}</span>
-                <ArrowRight size={16} />
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      <ContactSection />
+      <ContactSection variant="light" />
       <Footer />
     </div>
   );

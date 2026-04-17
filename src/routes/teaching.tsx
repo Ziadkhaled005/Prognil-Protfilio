@@ -63,7 +63,7 @@ function TeachingPage() {
         </div>
       </section>
 
-      <ContactSection />
+      <ContactSection variant="light" />
       <Footer />
     </div>
   );

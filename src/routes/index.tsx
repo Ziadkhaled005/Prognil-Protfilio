@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
-import heroWaves from "@/assets/hero-waves.jpg";
+import heroWaves from "@/assets/hero-bg-dark.jpg";
 import heroWavesLight from "@/assets/hero-waves-light.jpg";
 import dinaPhoto from "@/assets/dina-photo.jpg";
 import { ArrowRight, ExternalLink, Download } from "lucide-react";
@@ -65,7 +65,7 @@ function Index() {
               food access, prices, human mobility, and economic outcomes.
             </p>
             <Link to="/cv" className="btn-lime">
-              View my CV <ArrowRight size={16} />
+              View my CV
             </Link>
             <div className="mt-8">
               <h3 className="font-semibold mb-2">Contact Information</h3>
@@ -82,20 +82,44 @@ function Index() {
       </section>
 
       {/* Teaching Preview */}
-      <section className="py-20 px-6 md:px-10 max-w-6xl mx-auto">
-        <p className="text-sm text-muted-foreground mb-2">Teaching</p>
-        <p className="text-lg max-w-4xl leading-relaxed mb-12">
-          I teach economics with a focus on development, policy, and global food systems. My approach
-          combines rigorous theoretical foundations with applied research, encouraging students to think
-          critically and engage with real-world economic challenges.
-        </p>
-        <div className="grid md:grid-cols-2 gap-6">
-          {["Economics of Migration", "International Political Economy"].map((title) => (
-            <div key={title} className="section-dark rounded-lg p-6">
-              <p className="text-xs text-lime mb-2">SUBJECT</p>
-              <h3 className="text-surface-foreground font-semibold text-lg">{title}</h3>
-            </div>
-          ))}
+      <section className="py-20 px-6 md:px-10 bg-accent">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-sm text-muted-foreground mb-2">Teaching</p>
+          <p className="text-lg md:text-2xl max-w-4xl leading-relaxed mb-16">
+            I teach economics with a focus on development, policy, and global food systems. My approach
+            combines rigorous theoretical foundations with applied research, encouraging students to think
+            critically and engage with real-world economic challenges.
+          </p>
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                num: 1,
+                title: "Economics of Migration",
+                desc: "An introduction to the economic causes and impacts of migration, focusing on labor markets, development, and policy responses in a global context.",
+                uni: "Parthenope University of Naples",
+                date: "March 2022 – Feb 2023",
+              },
+              {
+                num: 2,
+                title: "International Political Economy",
+                desc: "An examination of the relationship between global economic systems and political institutions, with emphasis on trade, development, and governance.",
+                uni: "Parthenope University of Naples",
+                date: "March 2022 – Feb 2023",
+              },
+            ].map((subject) => (
+              <div key={subject.num} className="bg-card rounded-xl p-8 flex flex-col justify-between min-h-[320px]">
+                <div>
+                  <p className="text-xs text-muted-foreground mb-4">SUBJECT {subject.num}</p>
+                  <h3 className="text-xl font-bold mb-6">{subject.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{subject.desc}</p>
+                </div>
+                <div className="flex items-center justify-between text-xs text-muted-foreground mt-8 pt-4">
+                  <span className="font-semibold text-foreground">{subject.uni}</span>
+                  <span>{subject.date}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -105,19 +129,57 @@ function Index() {
         <p className="text-lg mb-8">Selected peer-reviewed articles and academic contributions.</p>
         <div className="space-y-6">
           {[
-            "Navigating Recent Crises in the MENA Region",
-            "STAPLES and Food Security Challenges in MENA",
-            "Does Environmental Change Affect Migration, Especially into the EU?",
-          ].map((title, i) => (
-            <div key={i} className="border-b border-border pb-6">
-              <h3 className="font-semibold mb-2">{i + 1}. {title}</h3>
-              <div className="flex gap-2 mt-3">
-                <button className="flex items-center gap-1 text-xs border border-border px-3 py-1.5 rounded-md hover:bg-accent transition-colors">
-                  <ExternalLink size={12} /> DOI
-                </button>
-                <button className="flex items-center gap-1 text-xs bg-lime text-lime-foreground px-3 py-1.5 rounded-md">
-                  <Download size={12} /> View PDF
-                </button>
+            {
+              title: "Navigating Recent Crises in the MENA Region",
+              desc: "A study examining how recent external shocks have affected food systems and policy responses across North Africa and the Middle East.",
+              authors: "Moawad, D. & Taddei, I. M. (2025)",
+              journal: "IEMed Mediterranean Yearbook 2025, IEMed",
+              doi: "https://www.iemed.org/publication/navigating-recent-crises-in-the-mena-region/",
+              pdf: "/papers/Crises_MENA_Region_Taddei_Moawad_IEMedYearbook2025.pdf",
+            },
+            {
+              title: "STAPLES and Food Security Challenges in MENA",
+              desc: "An analysis of the STAPLES project and its role in strengthening food system resilience and addressing food security challenges in the MENA region, with a focus on Egypt and Morocco.",
+              authors: "Moawad, D. (2025)",
+              journal: "Information and Decision Support Center (IDSC), January 2025 Edition",
+              doi: "https://www.idsc.gov.eg/Article/details/10829",
+              pdf: "/papers/STAPLES_Food_Security_MENA_Moawad_2025.pdf",
+            },
+            {
+              title: "Does Environmental Change Affect Migration, Especially into the EU?",
+              desc: "A literature-based analysis exploring how environmental and climate-induced changes influence migration patterns, particularly within the EU policy framework.",
+              authors: "Moawad, D. (2024)",
+              journal: "Social Sciences, 13(3), 160",
+              doi: "https://www.mdpi.com/2076-0760/13/3/160",
+              pdf: "/papers/Environmental_Change_Migration_EU_Moawad_2024.pdf",
+            },
+          ].map((pub, i) => (
+            <div key={i} className="border border-border rounded-lg p-6">
+              <h3 className="font-semibold text-lg mb-3">1. {pub.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">{pub.desc}</p>
+              <p className="text-sm font-semibold mb-4">{pub.authors}</p>
+              <div className="flex items-center justify-between">
+                <p className="text-sm text-muted-foreground">{pub.journal}</p>
+                <div className="flex gap-3">
+                  {pub.doi ? (
+                    <a href={pub.doi} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium bg-accent text-foreground px-6 py-3 rounded-lg hover:bg-accent/80 transition-colors">
+                      <ExternalLink size={18} /> DOI
+                    </a>
+                  ) : (
+                    <button className="flex items-center gap-2 text-sm font-medium bg-accent text-foreground px-6 py-3 rounded-lg opacity-40 cursor-default">
+                      <ExternalLink size={18} /> DOI
+                    </button>
+                  )}
+                  {pub.pdf ? (
+                    <a href={pub.pdf} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium bg-lime text-lime-foreground px-6 py-3 rounded-lg hover:opacity-90 transition-opacity">
+                      <Download size={18} /> View PDF
+                    </a>
+                  ) : (
+                    <button className="flex items-center gap-2 text-sm font-medium bg-lime text-lime-foreground px-6 py-3 rounded-lg opacity-40 cursor-default">
+                      <Download size={18} /> View PDF
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           ))}
@@ -125,22 +187,28 @@ function Index() {
       </section>
 
       {/* Research Preview */}
-      <section className="py-20 px-6 md:px-10 max-w-6xl mx-auto">
-        <p className="text-sm text-muted-foreground mb-2">Projects</p>
-        <h2 className="text-2xl md:text-3xl font-light mb-4">
-          Advancing knowledge through rigorous inquiry in economics and political studies.
-        </h2>
-        <div className="section-dark rounded-lg p-6 mt-8">
-          <div className="flex flex-wrap gap-2 mb-4">
-            <span className="text-xs border border-surface-foreground/20 text-surface-foreground px-3 py-1 rounded-full">Food Systems</span>
-            <span className="text-xs border border-surface-foreground/20 text-surface-foreground px-3 py-1 rounded-full">Policy</span>
-            <span className="text-xs border border-surface-foreground/20 text-surface-foreground px-3 py-1 rounded-full">MENA</span>
+      <section className="section-dark py-20 px-6 md:px-10">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+          <div>
+            <p className="text-sm text-surface-foreground/50 mb-4">Projects</p>
+            <h2 className="text-2xl md:text-4xl font-light leading-snug text-surface-foreground">
+              Advancing knowledge through rigorous inquiry in economics and political studies.
+            </h2>
           </div>
-          <h3 className="text-surface-foreground font-semibold mb-2">STAPLES – Food System Resilience in MENA</h3>
-          <p className="text-sm text-surface-foreground/60 leading-relaxed mb-4">
-            A research-based project examining food system resilience in the Middle East and North Africa.
-          </p>
-          <p className="text-xs text-surface-foreground/40">Research Contributor . 2025</p>
+          <div className="bg-surface-foreground/10 rounded-xl p-8 flex flex-col justify-between min-h-[380px]">
+            <div>
+              <div className="flex flex-wrap gap-2 mb-6">
+                <span className="text-xs bg-surface-foreground/15 text-surface-foreground/80 px-4 py-1.5 rounded-full">Food Systems</span>
+                <span className="text-xs bg-surface-foreground/15 text-surface-foreground/80 px-4 py-1.5 rounded-full">Policy</span>
+                <span className="text-xs bg-surface-foreground/15 text-surface-foreground/80 px-4 py-1.5 rounded-full">MENA</span>
+              </div>
+              <h3 className="text-surface-foreground font-semibold text-lg md:text-xl mb-4">STAPLES – STable food Access and Prices and Lower Exposure to Shocks</h3>
+              <p className="text-sm text-surface-foreground/50 leading-relaxed">
+                A research-based project examining food system resilience in the Middle East and North Africa. The project analyzes structural vulnerabilities, external shocks, and policy strategies, with particular focus on Egypt and Morocco.
+              </p>
+            </div>
+            <p className="text-xs text-surface-foreground/40 mt-8">Research Contributor . 2025</p>
+          </div>
         </div>
       </section>
 

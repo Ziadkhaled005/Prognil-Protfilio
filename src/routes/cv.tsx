@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import heroWaves from "@/assets/hero-waves.jpg";
+import heroWaves from "@/assets/hero-waves-dark-sculpt.jpg";
 import { Download, Mail, MapPin, Calendar } from "lucide-react";
 import { useState } from "react";
 
@@ -95,9 +95,13 @@ function CVPage() {
             <h1 className="page-title text-surface-foreground">DINA MOAWAD</h1>
             <p className="text-sm text-surface-foreground/60 mt-2">Research Associate In Economic Policy At The University Of Gastronomic</p>
           </div>
-          <button className="btn-lime flex items-center gap-2 shrink-0 mt-4">
+          <a
+            href="/DinaMoawad-CV.pdf"
+            download="DinaMoawad-CV.pdf"
+            className="btn-lime flex items-center gap-2 shrink-0 mt-4"
+          >
             <Download size={16} /> Download CV
-          </button>
+          </a>
         </div>
         <img src={heroWaves} alt="" className="w-full h-48 md:h-72 object-cover rounded-sm mt-6" width={1920} height={600} />
       </section>
